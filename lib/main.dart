@@ -75,18 +75,9 @@ class Quote extends StatelessWidget {
 }
 
 class ThreeThings extends StatefulWidget {
-  const ThreeThings({
-    Key key,
-    this.thing1: '',
-    this.thing2: '',
-    this.thing3: '',
-  }) : super(key: key);
-
-  final String thing1;
-  final String thing2;
-  final String thing3;
-
+  @override
   _ThreeThingsState createState() => _ThreeThingsState();
+
 }
 
 class _ThreeThingsState extends State<ThreeThings> {
@@ -94,30 +85,45 @@ class _ThreeThingsState extends State<ThreeThings> {
   String _thing2 = '';
   String _thing3 = '';
 
-  void setThing1(text) {
-    setState(() { _thing1 = text; });
+  void _handleInputChange1(String newText) {
+    print('# Setting thing 1: $newText');
+    setState(() { _thing1 = newText; });
   }
-  void setThing2(text) {
-    setState(() { _thing2 = text; });
+  void _handleInputChange2(String newText) {
+    print('# Setting thing 2: $newText');
+    setState(() { _thing2 = newText; });
   }
-  void setThing3(text) {
-    setState(() { _thing3 = text; });
+  void _handleInputChange3(String newText) {
+    print('# Setting thing 3: $newText');
+    setState(() { _thing3 = newText; });
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-
       padding: EdgeInsets.only(left:24, right:24),
       child: Column(
         children: [
-          TextFormField(),
-          TextFormField(),
-          TextFormField()
+          firstThingField( onChanged: _handleInputChange1, ),
+          secondThingField( onChanged: _handleInputChange2, ),
+          thirdThingField( onChanged: _handleInputChange3, ),
         ]
       ),
     );
   }
 }
 
+class firstThingField extends StatelessWidget {
+  firstThingField({Key key, @required this.onChanged})
+    : super(key: key);
 
+  final ValueChanged<String> onChanged;
+
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      child: TextField(
+        onChanged: this.onChanged
+      ),
+    );
+  }
+}
