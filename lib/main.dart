@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import "quotes.dart";
+import "persist.dart";
 
 void main() => runApp(MyApp());
 
@@ -81,22 +82,27 @@ class ThreeThings extends StatefulWidget {
 }
 
 class _ThreeThingsState extends State<ThreeThings> {
-  String _thing1 = '';
-  String _thing2 = '';
-  String _thing3 = '';
+  var thingsMap = {
+    1: '',
+    2: '',
+    3: ''
+  };
 
-  void _handleInputChange1(String newText) {
-    print('# Setting thing 1: $newText');
-    setState(() { _thing1 = newText; });
+
+  ValueChanged<String>_curryHandleInputChange(num fieldNum) {
+
+    ValueChanged<String> handleInputChange = (newText) {
+      print('# Setting state for thing $fieldNum : $newText');
+      setState(() {
+        thingsMap[fieldNum]= newText;
+      });
+      writeAndReadState(thingsMap.toString());
+    };
+    return handleInputChange;
+
   }
-  void _handleInputChange2(String newText) {
-    print('# Setting thing 2: $newText');
-    setState(() { _thing2 = newText; });
-  }
-  void _handleInputChange3(String newText) {
-    print('# Setting thing 3: $newText');
-    setState(() { _thing3 = newText; });
-  }
+  //@override
+  // initState  ->
 
   @override
   Widget build(BuildContext context) {
@@ -104,17 +110,17 @@ class _ThreeThingsState extends State<ThreeThings> {
       padding: EdgeInsets.only(left:24, right:24),
       child: Column(
         children: [
-          firstThingField( onChanged: _handleInputChange1, ),
-          secondThingField( onChanged: _handleInputChange2, ),
-          thirdThingField( onChanged: _handleInputChange3, ),
+          ThingField(onChanged: _curryHandleInputChange(1), ),
+          ThingField(onChanged: _curryHandleInputChange(2), ),
+          ThingField(onChanged: _curryHandleInputChange(3), ),
         ]
       ),
     );
   }
 }
 
-class firstThingField extends StatelessWidget {
-  firstThingField({Key key, @required this.onChanged})
+class ThingField extends StatelessWidget {
+  ThingField({Key key, @required this.onChanged})
     : super(key: key);
 
   final ValueChanged<String> onChanged;
@@ -126,4 +132,5 @@ class firstThingField extends StatelessWidget {
       ),
     );
   }
+
 }
