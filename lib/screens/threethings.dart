@@ -1,12 +1,12 @@
-//import 'dart:async';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:threethings/screens/thingNumber.dart';
+
 
 class ThreeThings extends StatefulWidget {
   @override
   _ThreeThingsState createState() => _ThreeThingsState();
-
 }
 
 class _ThreeThingsState extends State<ThreeThings> {
@@ -18,7 +18,6 @@ class _ThreeThingsState extends State<ThreeThings> {
     _loadThings();
   }
 
-  //Loading counter value on start
   _loadThings() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
@@ -41,13 +40,38 @@ class _ThreeThingsState extends State<ThreeThings> {
 
   @override
   Widget build(BuildContext context) {
+    double ROW_PADDING_TOP = 50;
     return Container(
       padding: EdgeInsets.only(left:24, right:24),
       child: Column(
           children: [
-            ThingField(onChanged: _curryHandleInputChange(1), data: 'myValue'),
-            ThingField(onChanged: _curryHandleInputChange(2), data: thingsMap['2']),
-            ThingField(onChanged: _curryHandleInputChange(3), data: thingsMap['3']),
+            Padding(
+              padding: EdgeInsets.only(top: ROW_PADDING_TOP),
+              child: Row(
+                children: [
+                  ThingNumber(text: '1'),
+                  new Flexible(
+                    child: ThingField(onChanged: _curryHandleInputChange(1), data: thingsMap['1']),),
+                  ]),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: ROW_PADDING_TOP),
+                child: Row(
+                  children: [
+                    ThingNumber(text: '2'),
+                    new Flexible(
+                      child: ThingField(onChanged: _curryHandleInputChange(2), data: thingsMap['2']),),
+                  ]),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: ROW_PADDING_TOP),
+              child: Row(
+                  children: [
+                    ThingNumber(text: '3'),
+                    new Flexible(
+                      child: ThingField(onChanged: _curryHandleInputChange(3), data: thingsMap['3']),),
+                  ]),
+            ),
           ]
       ),
     );
