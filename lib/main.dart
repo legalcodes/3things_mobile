@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import "quotes.dart";
-import "persist.dart";
 import 'package:threethings/screens/title.dart';
 import 'package:threethings/screens/home.dart';
 
