@@ -1,8 +1,7 @@
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:threethings/screens/thingNumber.dart';
-
+import 'package:threethings/screens/paddedThing.dart';
 
 class ThreeThings extends StatefulWidget {
   @override
@@ -27,7 +26,7 @@ class _ThreeThingsState extends State<ThreeThings> {
     });
   }
 
-  _curryHandleInputChange(num fieldNum) {
+  _curriedHandleInputChange(num fieldNum) {
     handleInputChange (newText) async {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       setState(() {
@@ -40,65 +39,16 @@ class _ThreeThingsState extends State<ThreeThings> {
 
   @override
   Widget build(BuildContext context) {
-    double ROW_PADDING_TOP = 50;
     return Container(
       padding: EdgeInsets.only(left:24, right:24),
       child: Column(
           children: [
-            Padding(
-              padding: EdgeInsets.only(top: ROW_PADDING_TOP),
-              child: Row(
-                children: [
-                  ThingNumber(text: '1'),
-                  new Flexible(
-                    child: ThingField(onChanged: _curryHandleInputChange(1), data: thingsMap['1']),),
-                  ]),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: ROW_PADDING_TOP),
-                child: Row(
-                  children: [
-                    ThingNumber(text: '2'),
-                    new Flexible(
-                      child: ThingField(onChanged: _curryHandleInputChange(2), data: thingsMap['2']),),
-                  ]),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: ROW_PADDING_TOP),
-              child: Row(
-                  children: [
-                    ThingNumber(text: '3'),
-                    new Flexible(
-                      child: ThingField(onChanged: _curryHandleInputChange(3), data: thingsMap['3']),),
-                  ]),
-            ),
+            PaddedThing(inputHandler: _curriedHandleInputChange(1), data: thingsMap['1'], num: '1'),
+            PaddedThing(inputHandler: _curriedHandleInputChange(2), data: thingsMap['2'], num: '2'),
+            PaddedThing(inputHandler: _curriedHandleInputChange(3), data: thingsMap['3'], num: '3'),
           ]
       ),
     );
   }
 }
 
-class ThingField extends StatelessWidget {
-  final ValueChanged<String> onChanged;
-  final String data;
-
-  ThingField({
-    this.data,
-    Key key,
-    @required this.onChanged,
-  }) : super(key: key);
-
-
-  @override
-  Widget build(BuildContext context) {
-  TextEditingController controller = TextEditingController(text: data);
-
-    return GestureDetector(
-      child: TextField(
-        onChanged: this.onChanged,
-        controller: controller,
-      ),
-    );
-  }
-
-}

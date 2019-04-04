@@ -7,7 +7,7 @@ class Quote extends StatefulWidget {
   _QuoteState createState() => _QuoteState();
 }
 
-class _QuoteState extends State<Quote> with SingleTickerProviderStateMixin {
+class _QuoteState extends State<Quote> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     var quote = randomQuote();
@@ -24,15 +24,18 @@ class _QuoteState extends State<Quote> with SingleTickerProviderStateMixin {
 
     controller.forward();
 
-    return FadeTransition(
-      opacity: animation,
-     child: Container(
-      alignment: Alignment.topCenter,
-      padding: EdgeInsets.only(left:18, right:18),
-      child: Text(
-        '${quote}',
-      ),
-    )
+    return SizedBox(
+      height: 60,
+      child: FadeTransition(
+        opacity: animation,
+        child: Container(
+          alignment: Alignment.topCenter,
+          padding: EdgeInsets.only(left:42, right:42),
+          child: Text(
+            '${quote}',
+          ),
+        )
+      )
     );
   }
 }
