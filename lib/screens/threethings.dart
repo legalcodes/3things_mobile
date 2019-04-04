@@ -28,9 +28,7 @@ class _ThreeThingsState extends State<ThreeThings> {
   }
 
   _onTapNum(String fieldNum) {
-    print('Num has been tapped!');
     setState(() { tapped[fieldNum] = !tapped[fieldNum];});
-    print('$fieldNum Is tapped : ${tapped[fieldNum]}');
   }
 
   _curriedHandleInputChange(num fieldNum) {
