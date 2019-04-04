@@ -50,9 +50,9 @@ class _ThreeThingsState extends State<ThreeThings> {
       padding: EdgeInsets.only(left:24, right:24),
       child: Column(
           children: [
-            PaddedThing(inputHandler: _curriedHandleInputChange(1), data: thingsMap['1'], num: '1', onTapNum: _onTapNum),
-            PaddedThing(inputHandler: _curriedHandleInputChange(2), data: thingsMap['2'], num: '2', onTapNum: _onTapNum),
-            PaddedThing(inputHandler: _curriedHandleInputChange(3), data: thingsMap['3'], num: '3', onTapNum: _onTapNum),
+            PaddedThing(inputHandler: _curriedHandleInputChange(1), data: thingsMap['1'], num: '1', onTapNum: _onTapNum, tapped: tapped),
+            PaddedThing(inputHandler: _curriedHandleInputChange(2), data: thingsMap['2'], num: '2', onTapNum: _onTapNum, tapped: tapped),
+            PaddedThing(inputHandler: _curriedHandleInputChange(3), data: thingsMap['3'], num: '3', onTapNum: _onTapNum, tapped: tapped),
           ]
       ),
     );

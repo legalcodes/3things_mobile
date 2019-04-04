@@ -5,11 +5,13 @@ import 'package:threethings/screens/thingNumber.dart';
 class PaddedThing extends StatelessWidget {
   final Function inputHandler;
   final Function onTapNum;
+  final Map tapped;
   final String data;
   final String num;
 
   PaddedThing({
     this.onTapNum,
+    this.tapped,
     this.data,
     this.num,
     Key key,
@@ -26,7 +28,11 @@ class PaddedThing extends StatelessWidget {
           children: [
             ThingNumber(text: num, onTapNum: onTapNum),
             new Flexible(
-              child: ThingField(onChanged: inputHandler, data: data),),
+              child: ThingField(
+                  onChanged: inputHandler,
+                  data: data,
+                  tapped: tapped,
+                  num: num)),
           ]),
     );
   }
@@ -35,21 +41,35 @@ class PaddedThing extends StatelessWidget {
 class ThingField extends StatelessWidget {
   final ValueChanged<String> onChanged;
   final String data;
+  final String num;
+  final Map tapped;
 
   ThingField({
     @required this.onChanged,
+    this.tapped,
     this.data,
+    this.num,
     Key key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    bool isTapped = tapped[this.num];
+    TextStyle textStyle;
     TextEditingController controller = TextEditingController(text: data);
+    if (isTapped) {
+      textStyle = TextStyle(
+          decoration: TextDecoration.lineThrough,
+          color: Colors.grey);
+    } else {
+      textStyle = TextStyle();
+    }
 
     return GestureDetector(
       child: TextField(
         onChanged: this.onChanged,
         controller: controller,
+        style: textStyle,
       ),
     );
   }
