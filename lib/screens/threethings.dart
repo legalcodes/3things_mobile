@@ -9,6 +9,7 @@ class ThreeThings extends StatefulWidget {
 }
 
 class _ThreeThingsState extends State<ThreeThings> {
+  var tapped = { '1': false, '2': false, '3': false };
   var thingsMap = { '1': '', '2': '', '3': '' };
 
   @override
@@ -24,6 +25,12 @@ class _ThreeThingsState extends State<ThreeThings> {
       thingsMap['2'] = (prefs.getString('2') ?? '');
       thingsMap['3'] = (prefs.getString('3') ?? '');
     });
+  }
+
+  _onTapNum(String fieldNum) {
+    print('Num has been tapped!');
+    setState(() { tapped[fieldNum] = !tapped[fieldNum];});
+    print('$fieldNum Is tapped : ${tapped[fieldNum]}');
   }
 
   _curriedHandleInputChange(num fieldNum) {
@@ -43,9 +50,9 @@ class _ThreeThingsState extends State<ThreeThings> {
       padding: EdgeInsets.only(left:24, right:24),
       child: Column(
           children: [
-            PaddedThing(inputHandler: _curriedHandleInputChange(1), data: thingsMap['1'], num: '1'),
-            PaddedThing(inputHandler: _curriedHandleInputChange(2), data: thingsMap['2'], num: '2'),
-            PaddedThing(inputHandler: _curriedHandleInputChange(3), data: thingsMap['3'], num: '3'),
+            PaddedThing(inputHandler: _curriedHandleInputChange(1), data: thingsMap['1'], num: '1', onTapNum: _onTapNum),
+            PaddedThing(inputHandler: _curriedHandleInputChange(2), data: thingsMap['2'], num: '2', onTapNum: _onTapNum),
+            PaddedThing(inputHandler: _curriedHandleInputChange(3), data: thingsMap['3'], num: '3', onTapNum: _onTapNum),
           ]
       ),
     );

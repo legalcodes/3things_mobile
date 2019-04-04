@@ -4,13 +4,15 @@ import 'package:threethings/screens/thingNumber.dart';
 
 class PaddedThing extends StatelessWidget {
   final Function inputHandler;
+  final Function onTapNum;
   final String data;
   final String num;
 
   PaddedThing({
+    this.onTapNum,
     this.data,
-    Key key,
     this.num,
+    Key key,
     @required this.inputHandler,
   }) : super(key: key);
 
@@ -22,7 +24,7 @@ class PaddedThing extends StatelessWidget {
       padding: EdgeInsets.only(top: ROW_PADDING_TOP),
       child: Row(
           children: [
-            ThingNumber(text: num),
+            ThingNumber(text: num, onTapNum: onTapNum),
             new Flexible(
               child: ThingField(onChanged: inputHandler, data: data),),
           ]),
@@ -35,9 +37,9 @@ class ThingField extends StatelessWidget {
   final String data;
 
   ThingField({
+    @required this.onChanged,
     this.data,
     Key key,
-    @required this.onChanged,
   }) : super(key: key);
 
   @override
