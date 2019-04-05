@@ -5,7 +5,7 @@ var quotes = [
 "“Better a little which is well done, than a great deal imperfectly.” —Plato",
 "“Pleasure in the job puts perfection in the work.” —Aristotle",
 "“...do what’s essential. Do less, better. Because most of what we do or say is not essential. If you can eliminate it, you’ll have more tranquility.” —Marcus Aurelius",
-"“Neither blame or praise yourself.” —Plutarch",
+"“Neither blame nor praise yourself.” —Plutarch",
 "“It does not matter how slowly you go as long as you do not stop.” —Confucius",
 "“Great acts are made up of small deeds.” —Lao Tzu",
 "“Hard choices, good life. Easy choices, hard life.” -- Jerzy Gregorek"
