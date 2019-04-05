@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:threethings/screens/quotes_data.dart';
+import 'package:threethings/screens/home/quotes_data.dart';
 
 class Quote extends StatefulWidget {
   @override

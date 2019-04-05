@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:threethings/screens/thingNumber.dart';
+import 'package:threethings/screens/home/thingNumber.dart';
 
 class PaddedThing extends StatelessWidget {
   final Function inputHandler;

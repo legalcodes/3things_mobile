@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-//import "package:threethings/screens/quotes_data.dart";
-//import 'package:threethings/screens/title.dart';
-import 'package:threethings/screens/home.dart';
+import 'package:threethings/screens/home/home.dart';
 
 
 void main() => runApp(MyApp());
