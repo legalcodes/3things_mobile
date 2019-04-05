@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:threethings/screens/home/title.dart';
 import 'package:threethings/screens/home/quote.dart';
 import 'package:threethings/screens/home/threethings.dart';
+import 'package:threethings/screens/home/footer.dart';
 
 class Home extends StatelessWidget {
   @override
@@ -14,6 +15,7 @@ class Home extends StatelessWidget {
               SplitTitle(),
               Quote(),
               ThreeThings(),
+              Footer(),
             ],
           ),
         )
