@@ -11,7 +11,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       initialRoute: '/',
       routes: {
-//        '/': (context) => Home(),
         '/help': (context) => Help(),
       },
       title: '3Things',
@@ -21,7 +20,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
-
-
