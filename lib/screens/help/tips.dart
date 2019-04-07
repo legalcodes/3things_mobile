@@ -1,3 +1,7 @@
+// Copyright 2019 The Flutter team. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
 List tips = [
   'Shaping our lives is difficult.',
   'Thinking about our goals for just five minutes each day can help.',
