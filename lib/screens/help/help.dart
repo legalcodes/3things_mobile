@@ -24,8 +24,6 @@ class _HelpState extends State<Help> {
                     backButton(),
                   ]
               ),
-              // Shaping our lives is difficult.
-              // Five minutes. Three things. Let's do this.
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -33,22 +31,6 @@ class _HelpState extends State<Help> {
                     StaggeredTips(),
                   ]
               ),
-              // Take a deep breath.
-              // Think about three things you *really* want to get done today.
-              // If this were the only thing I accomplished today, would I be satisfied?
-              Row(
-                  children: [
-                  ]
-              ),
-              // Will moving this forward make all other TODOs unimportant or easier to accomplish?
-              Row(
-                  children: [
-                  ]
-              ),
-              // Block out 2-3 HOURS to focus on ONE of them for today. This is ONE BLOCK OF TIME
-              // If you get distracted or can't make progress today, don't freak out.
-              // gently come back tomorrow and focus on your one TO-DO
-              // Congratulations! That’s it.
             ]
           )
         ),

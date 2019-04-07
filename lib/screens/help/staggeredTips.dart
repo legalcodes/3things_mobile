@@ -44,9 +44,6 @@ class _StaggeredTipsState extends State<StaggeredTips> with TickerProviderStateM
   }
 
   void scroll(direction) {
-    print('Is last: $_isLast');
-    print('Is first: $_isFirst');
-    print('Direction: $direction');
     if (direction == FORWARD && (!_isLast)) {
       controller.reverse();
       setState(() { _current++; });
@@ -58,14 +55,6 @@ class _StaggeredTipsState extends State<StaggeredTips> with TickerProviderStateM
       setBounds();
       controller.forward(from: 0);
     }
-
-    print('AFTER CHANGE');
-    print('Current: $_current');
-    print('Is last: $_isLast');
-    print('Is first: $_isFirst');
-    print('===============');
-
-
   }
 
   @override
