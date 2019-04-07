@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:threethings/screens/help/backButton.dart';
-import 'package:threethings/screens/help/staggeredTips.dart';
+import 'package:threethings/screens/help/StaggeredTips.dart';
 
 class Help extends StatefulWidget {
   @override
@@ -30,7 +30,7 @@ class _HelpState extends State<Help> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    staggeredTips(),
+                    StaggeredTips(),
                   ]
               ),
               // Take a deep breath.

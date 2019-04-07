@@ -1,41 +1,104 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:threethings/screens/help/DirectionalButton.dart';
+import 'package:threethings/screens/help/tips.dart';
+import 'package:threethings/screens/help/constants.dart';
 
-class staggeredTips extends StatefulWidget {
+class StaggeredTips extends StatefulWidget {
   @override
-  _staggeredTipsState createState() => _staggeredTipsState();
+  _StaggeredTipsState createState() => _StaggeredTipsState();
 }
 
-class _staggeredTipsState extends State<staggeredTips> {
-  String _current;
-  // length = 10
-  List tips = [
-    'Shaping our lives is difficult.',
-    'Five minutes. Three things. Let\'s do this.',
-    'Take a deep breath.',
-    'Think about three things you *really* want to get done today.',
-    'If this were the only thing I accomplished today, would I be satisfied?',
-    'Will moving this forward make all other TODOs unimportant or easier to accomplish?',
-    'Block out 2-3 HOURS to focus on ONE of them for today. This is ONE BLOCK OF TIME',
-    'If you get distracted or can\'t make progress today, don\'t freak out.',
-    'gently come back tomorrow and focus on your one TO-DO',
-    'Congratulations! That’s it.',
-  ];
+class _StaggeredTipsState extends State<StaggeredTips> with TickerProviderStateMixin {
+  int max;
+  int _current;
+  bool _isLast;
+  bool _isFirst;
+  AnimationController controller;
+  Animation<double> animation;
+
+  _StaggeredTipsState({
+    this.controller,
+    this.max,
+    this.animation
+  });
 
   @override
   void initState() {
     super.initState();
+    max = tips.length-1;
+    _current = 0;
+    _isLast = false;
+    _isFirst = true;
+
+    controller = AnimationController( vsync: this, duration: Duration(seconds: 1));
+    animation = Tween( begin: 0.0, end: 1.0, ).animate(controller);
+    controller.forward(from: 0);
+  }
+
+  void setBounds() {
+    if (_current == max) { setState(() { _isLast = true; }); }
+    if (_current == 0) { setState(() { _isFirst = true; }); }
+    if (_current > 0) { setState(() { _isFirst = false; }); }
+    if (_current < max) { setState(() { _isLast = false; }); }
+  }
+
+  void scroll(direction) {
+    print('Is last: $_isLast');
+    print('Is first: $_isFirst');
+    print('Direction: $direction');
+    if (direction == FORWARD && (!_isLast)) {
+      controller.reverse();
+      setState(() { _current++; });
+      setBounds();
+      controller.forward(from: 0);
+    } else if (direction == BACKWARD && (!_isFirst )) {
+      controller.reverse();
+      setState(() { _current--;});
+      setBounds();
+      controller.forward(from: 0);
+    }
+
+    print('AFTER CHANGE');
+    print('Current: $_current');
+    print('Is last: $_isLast');
+    print('Is first: $_isFirst');
+    print('===============');
+
+
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(top: 100),
-      child: Row(
-          children: [
-            Text('hi')
-          ]
-      );
+    double c_width = MediaQuery.of(context).size.width*0.8;
+
+    return Container (
+      padding: EdgeInsets.only(left: 16.0, right: 16.0, top: 230),
+      width: c_width,
+      child: Column(
+        children: <Widget>[
+          Container(
+            height: 150,
+            child: FadeTransition(
+              opacity: animation,
+              child: Text(
+                tips[_current],
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
+          Container(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                DirectionalButton(text: '<', onTap: () => scroll(BACKWARD)),
+                DirectionalButton(text: '>', onTap: () => scroll(FORWARD)),
+              ]
+            )
+          ),
+        ],
+      ),
     );
   }
 }
+

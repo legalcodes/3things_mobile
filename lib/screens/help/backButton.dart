@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 class backButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: GestureDetector(
+    return
+      GestureDetector(
         onTap: () {
           Navigator.pop(context,);
         },
@@ -20,7 +20,6 @@ class backButton extends StatelessWidget {
                 ),
               )
           ),
-        )
       )
     );
   }
